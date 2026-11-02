@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/leviadvco/public_html/
-    - /bin/cp -R index.html pleadings.html small-claims.html accessibility.html privacy.html sitemap.xml articles assets en fr images $DEPLOYPATH
+    - /bin/cp -R * $DEPLOYPATH
