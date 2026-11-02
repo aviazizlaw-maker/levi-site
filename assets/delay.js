@@ -7,7 +7,7 @@
     total: root.querySelector('.dt-total'), delay: root.querySelector('.dt-delay'), months: root.querySelector('.dt-months'),
     msg: root.querySelector('.dt-msg'), table: root.querySelector('.dt-table'), body: root.querySelector('.dt-table tbody'), wa: root.querySelector('.dt-wa')
   };
-  var waBase = out.wa.getAttribute('href');
+  window.leadSummary = function () { return ''; };
   var nf = new Intl.NumberFormat(L.locale, { maximumFractionDigits: 0 });
   function money(n) { return L.locale === 'he-IL' ? nf.format(n) + ' ₪' : nf.format(n) + ' ₪'; }
   function parse(v) { if (!v) return null; var p = v.split('-'); return Date.UTC(+p[0], +p[1] - 1, +p[2]); }
@@ -24,7 +24,7 @@
     f.act.disabled = open;
     var act = open ? today() : parse(f.act.value), rent = parseFloat(f.rent.value);
     out.table.hidden = true; out.body.innerHTML = '';
-    out.wa.setAttribute('href', waBase);
+    window.leadSummary = function () { return ''; };
     if (due === null || act === null || !(rent > 0)) { show('—', '—', '—', L.m_fill); return; }
     if (act <= due) { show(money(0), '0', '0', L.m_none); return; }
     // whole months and leftover days of delay
@@ -49,8 +49,9 @@
     });
     out.body.innerHTML = rows; out.table.hidden = false;
     show(money(total), delayTxt, String(counted), ver === 'new' ? L.m_ok_new : L.m_ok_old);
-    var text = L.wa.replace('{m}', counted).replace('{s}', money(total));
-    out.wa.setAttribute('href', 'https://wa.me/' + L.wa_num + '?text=' + encodeURIComponent(text));
+    var lines = [root.querySelector('.dt-ver input:checked').parentNode.querySelector('b').textContent, f.due.value + ' → ' + (open ? 'open' : f.act.value), 'rent: ' + rent, out.delay.textContent, counted + ' months', money(total)];
+    [].forEach.call(out.body.querySelectorAll('tr'), function (tr) { lines.push([].map.call(tr.cells, function (c) { return c.textContent; }).join(' | ')); });
+    window.leadSummary = function () { return lines.join('\n'); };
   }
   function show(t, d, m, msg) { out.total.textContent = t; out.delay.textContent = d; out.months.textContent = m; out.msg.textContent = msg; }
   f.addEventListener('input', calc); f.addEventListener('change', calc); calc();
