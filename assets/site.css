@@ -404,3 +404,40 @@ p{margin:0 0 1em}
 .aside .dt-promo .btn{margin-top:14px}
 @media (max-width:900px){.dt{grid-template-columns:1fr}.dt-res{position:static}.dt-cards{grid-template-columns:1fr}}
 @media (max-width:560px){.dt-row,.dt-ver{grid-template-columns:1fr}.dt-res{padding:24px}.dt-know{padding:22px}}
+
+/* ---- client reviews ---- */
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.rv-wrap{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.rv-form{display:grid;gap:18px}
+.rv-form label{display:grid;gap:8px;font-weight:500}
+.rv-form small{font-weight:400;color:var(--ink-soft);font-size:.9rem}
+.rv-form input:not([type=radio]):not([type=checkbox]),.rv-form textarea{font:inherit;font-size:1.05rem;padding:12px 14px;border:1.5px solid var(--line);border-radius:var(--r-s);background:var(--cream);color:var(--ink);width:100%}
+.rv-form input:focus,.rv-form textarea:focus{border-color:var(--blue);outline:none;box-shadow:0 0 0 3px rgba(51,92,255,.18)}
+.rv-stars{border:0;margin:0;padding:0}
+.rv-stars legend{font-weight:500;margin-bottom:6px;padding:0}
+.rv-starrow{display:inline-flex;flex-direction:row-reverse;gap:4px}
+.rv-starrow input{position:absolute;opacity:0;width:1px;height:1px}
+.rv-starrow label{font-size:2.6rem;line-height:1;color:var(--line);cursor:pointer;transition:color .15s,transform .15s;display:block}
+.rv-starrow label:hover,.rv-starrow label:hover~label,.rv-starrow input:checked~label{color:#F5B301}
+.rv-starrow label:hover{transform:scale(1.12)}
+.rv-starrow input:focus-visible+label{outline:3px solid var(--blue);outline-offset:2px;border-radius:6px}
+.rv-hp{position:absolute!important;inset-inline-start:-9999px;height:1px;overflow:hidden}
+.rv-btns{display:flex;gap:12px;flex-wrap:wrap}
+.rv-status{font-weight:500;color:var(--wa);min-height:1.5em;margin:0}
+.rv-status.bad{color:#B42318}
+.rv-side h2{font-size:1.6rem}
+.rv-side .rv-list{display:grid;gap:14px}
+.rv-side .review{background:var(--cream);border:1px solid var(--line)}
+.rv-side .review blockquote{color:var(--ink);font-size:1.02rem}
+.rv-side .review figcaption{color:var(--ink-soft)}
+.rv-side .review figcaption b{color:var(--navy)}
+.review .stars{color:#F5B301;letter-spacing:2px}
+.review .stars .off{color:rgba(150,150,150,.45)}
+.rv-empty{color:var(--ink-soft)}
+.rv-home{margin-top:48px;padding-top:36px;border-top:1px solid rgba(255,255,255,.14)}
+.rv-home h3{font-size:1.5rem;margin-bottom:18px}
+.rv-home .rv-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px}
+.rv-home .rv-empty{color:#C3CDDD}
+.rv-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}
+.rv-actions .btn-ghost{border-color:#fff;color:#fff!important}
+@media (max-width:900px){.rv-wrap{grid-template-columns:1fr}}
