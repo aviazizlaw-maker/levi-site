@@ -74,7 +74,7 @@ $now = time();
 $limited = with_lock($LOCK, function () use ($RATE, $ipKey, $now) {
   $rate = load_json($RATE);
   foreach ($rate as $k => $ts) { $rate[$k] = array_values(array_filter($ts, function ($t) use ($now) { return $t > $now - 86400; })); if (!$rate[$k]) unset($rate[$k]); }
-  $hit = count($rate[$ipKey] ?? []) >= 3;
+  $hit = count($rate[$ipKey] ?? []) >= 10;
   if (!$hit) $rate[$ipKey][] = $now;
   save_json($RATE, $rate);
   return $hit;
